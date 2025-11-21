@@ -4,24 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bubbles & Bakes | Sea-Themed Café</title>
+
     <style>
         body {
             margin: 0;
             font-family: 'Arial', sans-serif;
-            background: #e8f6fa;
+            background: #c7ecff;
             color: #033b4a;
+            overflow-x: hidden;
         }
+
         header {
-            background: linear-gradient(to bottom, #1ca3ec, #116d99);
+            background: linear-gradient(to bottom, #1ca3ec, #0b5d85);
             color: white;
             padding: 25px;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
+
         nav {
             background: #0d506d;
             padding: 10px 0;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
+
         nav a {
             color: #c3f1ff;
             text-decoration: none;
@@ -29,37 +38,43 @@
             font-size: 18px;
             font-weight: bold;
         }
-        nav a:hover {
-            color: white;
-        }
+
         .section {
             padding: 40px;
             text-align: center;
+            position: relative;
+            z-index: 2;
         }
+
         .menu-section {
-            background: white;
+            background: rgba(255, 255, 255, 0.9);
             margin: 20px auto;
             padding: 20px;
             width: 85%;
             border-radius: 12px;
             box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
         }
+
         .dish {
             padding: 15px;
             border-bottom: 1px solid #d6eef7;
         }
+
         .dish:last-child {
             border-bottom: none;
         }
-        .dish h3 {
-            margin: 0;
+
+        h2 {
+            color: #0a5c77;
         }
+
         .menu-image {
             width: 80%;
             border-radius: 12px;
             box-shadow: 0 4px 10px rgba(0,0,0,0.2);
             margin: 25px 0;
         }
+
         footer {
             background: #0d506d;
             color: #c3f1ff;
@@ -67,9 +82,56 @@
             padding: 20px;
             margin-top: 40px;
         }
+
+        /* ---------------- BUBBLE ANIMATION ---------------- */
+
+        .bubble-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .bubble {
+            position: absolute;
+            bottom: -100px;
+            background: rgba(255, 255, 255, 0.6);
+            border-radius: 50%;
+            animation: rise 12s infinite ease-in;
+            opacity: 0.8;
+        }
+
+        /* Blue bubbles */
+        .bubble.blue {
+            background: rgba(150, 200, 255, 0.7);
+        }
+
+        @keyframes rise {
+            0% { transform: translateY(0) scale(0.5); opacity: 0.3; }
+            50% { opacity: 0.9; }
+            100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
+        }
     </style>
 </head>
+
 <body>
+
+<!-- ANIMATED BUBBLES -->
+<div class="bubble-container">
+    <!-- Randomized bubbles (you can add more if you want!) -->
+    <div class="bubble blue" style="left: 10%; width: 25px; height: 25px; animation-delay: 0s;"></div>
+    <div class="bubble" style="left: 25%; width: 15px; height: 15px; animation-delay: 2s;"></div>
+    <div class="bubble blue" style="left: 40%; width: 35px; height: 35px; animation-delay: 1s;"></div>
+    <div class="bubble" style="left: 55%; width: 20px; height: 20px; animation-delay: 3s;"></div>
+    <div class="bubble blue" style="left: 70%; width: 30px; height: 30px; animation-delay: 1.5s;"></div>
+    <div class="bubble" style="left: 85%; width: 18px; height: 18px; animation-delay: 4s;"></div>
+    <div class="bubble blue" style="left: 15%; width: 40px; height: 40px; animation-delay: 5s;"></div>
+    <div class="bubble" style="left: 60%; width: 22px; height: 22px; animation-delay: 6s;"></div>
+</div>
 
 <header>
     <h1>🌊 Bubbles & Bakes Café</h1>
@@ -85,63 +147,29 @@
 <!-- Drinks Section -->
 <section id="drinks" class="section">
     <h2>🥤 Drinks</h2>
+
     <div class="menu-section">
-
-        <div class="dish">
-            <h3>Hot Chocolate — £3</h3>
-        </div>
-
-        <div class="dish">
-            <h3>Coral Coffee — £2.50</h3>
-        </div>
-
-        <div class="dish">
-            <h3>Orange Juice — £1.50</h3>
-        </div>
-
-        <div class="dish">
-            <h3>Apple Juice — £1.50</h3>
-        </div>
-
+        <div class="dish"><h3>Hot Chocolate — £3</h3></div>
+        <div class="dish"><h3>Coral Coffee — £2.50</h3></div>
+        <div class="dish"><h3>Orange Juice — £1.50</h3></div>
+        <div class="dish"><h3>Apple Juice — £1.50</h3></div>
     </div>
 
-    <!-- Menu image -->
     <img src="/mnt/data/IMG_1569.jpg" class="menu-image" alt="Drinks & Treats Menu">
 </section>
 
 <!-- Sweet Treats Section -->
 <section id="treats" class="section">
     <h2>🧁 Sweet Treats</h2>
+
     <div class="menu-section">
-
-        <div class="dish">
-            <h3>Mermaid Moose — £3.50</h3>
-        </div>
-
-        <div class="dish">
-            <h3>Cake Pop — £2.50</h3>
-        </div>
-
-        <div class="dish">
-            <h3>Cinnamon Sea Swirl — £3.55</h3>
-        </div>
-
-        <div class="dish">
-            <h3>Pancake 🥞 — £5.50</h3>
-        </div>
-
-        <div class="dish">
-            <h3>Tidal Treats — £3.50</h3>
-        </div>
-
-        <div class="dish">
-            <h3>Cupcake — £3.50</h3>
-        </div>
-
-        <div class="dish">
-            <h3>Starfish Sugar Shortcake — £4</h3>
-        </div>
-
+        <div class="dish"><h3>Mermaid Moose — £3.50</h3></div>
+        <div class="dish"><h3>Cake Pop — £2.50</h3></div>
+        <div class="dish"><h3>Cinnamon Sea Swirl — £3.55</h3></div>
+        <div class="dish"><h3>Pancake 🥞 — £5.50</h3></div>
+        <div class="dish"><h3>Tidal Treats — £3.50</h3></div>
+        <div class="dish"><h3>Cupcake — £3.50</h3></div>
+        <div class="dish"><h3>Starfish Sugar Shortcake — £4</h3></div>
     </div>
 </section>
 
@@ -150,7 +178,6 @@
     <h2>🍦 Ice Cream Menu</h2>
 
     <div class="menu-section">
-
         <div class="dish"><h3>Chocolate Ice Cream</h3></div>
         <div class="dish"><h3>Vanilla Ice Cream</h3></div>
         <div class="dish"><h3>Butterscotch Ice Cream</h3></div>
@@ -158,7 +185,7 @@
         <div class="dish"><h3>Strawberry Ice Cream</h3></div>
         <div class="dish"><h3>Peach Ice Cream</h3></div>
         <div class="dish"><h3>Mocha Ice Cream</h3></div>
-        <div class="dish"><h3>Oreo Cookies Ice Cream</h3></div>
+        <div class="dish"><h3>Oreo Cookie Ice Cream</h3></div>
 
         <h3><strong>Sizes & Prices:</strong></h3>
         <p>Small — £3.50</p>
@@ -166,7 +193,6 @@
         <p>Large — £4.50</p>
     </div>
 
-    <!-- Ice cream menu image -->
     <img src="/mnt/data/IMG_1565.jpg" class="menu-image" alt="Ice Cream Menu">
 </section>
 
