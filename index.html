@@ -1,203 +1,409 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bubbles & Bakes | Sea-Themed Café</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Bubbles & Bakes | Sea-Themed Café</title>
 
-    <style>
-        body {
-            margin: 0;
-            font-family: 'Arial', sans-serif;
-            background: #c7ecff;
-            color: #033b4a;
-            overflow-x: hidden;
-        }
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+      background: #02394a; /* deep ocean blue */
+      color: #c3f1ff;
+      overflow-x: hidden;
+    }
 
-        header {
-            background: linear-gradient(to bottom, #1ca3ec, #0b5d85);
-            color: white;
-            padding: 25px;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
+    header {
+      background: linear-gradient(to bottom, #014058, #022c3a);
+      color: #c3f1ff;
+      padding: 15px 30px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      position: relative;
+      z-index: 2;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    }
 
-        nav {
-            background: #0d506d;
-            padding: 10px 0;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
+    /* Logo styling */
+    header img.logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid #0a8fdc;
+      background: #8bd4ff;
+      box-shadow: 0 0 8px #0a8fdcaa;
+    }
 
-        nav a {
-            color: #c3f1ff;
-            text-decoration: none;
-            margin: 0 20px;
-            font-size: 18px;
-            font-weight: bold;
-        }
+    header h1 {
+      font-size: 2rem;
+      margin: 0;
+      font-weight: 900;
+      text-shadow: 1px 1px 3px #001d29;
+      user-select: none;
+    }
 
-        .section {
-            padding: 40px;
-            text-align: center;
-            position: relative;
-            z-index: 2;
-        }
+    nav {
+      background: #01405a;
+      padding: 10px 0;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      box-shadow: inset 0 -3px 6px rgba(0, 0, 0, 0.3);
+    }
 
-        .menu-section {
-            background: rgba(255, 255, 255, 0.9);
-            margin: 20px auto;
-            padding: 20px;
-            width: 85%;
-            border-radius: 12px;
-            box-shadow: 0px 4px 10px rgba(0,0,0,0.1);
-        }
+    nav a {
+      color: #a8dfff;
+      text-decoration: none;
+      margin: 0 24px;
+      font-size: 18px;
+      font-weight: 600;
+      transition: color 0.3s ease;
+      user-select: none;
+    }
 
-        .dish {
-            padding: 15px;
-            border-bottom: 1px solid #d6eef7;
-        }
+    nav a:hover,
+    nav a:focus {
+      color: #ffffff;
+      outline: none;
+      text-shadow: 0 0 6px #0a8fdc;
+    }
 
-        .dish:last-child {
-            border-bottom: none;
-        }
+    .section {
+      padding: 50px 20px 70px;
+      text-align: center;
+      position: relative;
+      z-index: 2;
+      max-width: 960px;
+      margin: auto;
+      color: #d7f0ff;
+    }
 
-        h2 {
-            color: #0a5c77;
-        }
+    /* Fancy wave divider */
+    .wave-divider {
+      position: relative;
+      width: 100%;
+      height: 70px;
+      overflow: hidden;
+      margin: 0;
+      padding: 0;
+    }
+    .wave-divider svg {
+      position: absolute;
+      bottom: 0;
+      width: 100%;
+      height: 70px;
+    }
 
-        .menu-image {
-            width: 80%;
-            border-radius: 12px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            margin: 25px 0;
-        }
+    .menu-section {
+      background: rgba(2, 57, 76, 0.85);
+      margin: 30px auto;
+      padding: 30px 40px;
+      border-radius: 20px;
+      box-shadow: 0 4px 30px #001c2b88;
+      text-align: left;
+      color: #bbe1ff;
+      max-width: 700px;
+      font-size: 1.1rem;
+      user-select: none;
+    }
 
-        footer {
-            background: #0d506d;
-            color: #c3f1ff;
-            text-align: center;
-            padding: 20px;
-            margin-top: 40px;
-        }
+    .menu-section h2 {
+      color: #63c2ff;
+      margin-bottom: 20px;
+      font-weight: 800;
+      text-align: center;
+      text-shadow: 1px 1px 3px #001b2f;
+      user-select: text;
+    }
 
-        /* ---------------- BUBBLE ANIMATION ---------------- */
+    .menu-item {
+      display: flex;
+      justify-content: space-between;
+      padding: 10px 0;
+      border-bottom: 1px solid #0d3f59;
+      font-weight: 600;
+    }
+    .menu-item:last-child {
+      border-bottom: none;
+    }
+    .menu-item .name {
+      max-width: 70%;
+      text-align: left;
+      text-transform: capitalize;
+    }
+    .menu-item .price {
+      min-width: 50px;
+      text-align: right;
+      font-variant-numeric: tabular-nums;
+    }
 
-        .bubble-container {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            overflow: hidden;
-            pointer-events: none;
-            z-index: 1;
-        }
+    .menu-image {
+      width: 90%;
+      max-width: 700px;
+      border-radius: 16px;
+      box-shadow: 0 8px 20px #000a14bb;
+      margin: 30px auto 0;
+      display: block;
+      user-select: none;
+    }
 
-        .bubble {
-            position: absolute;
-            bottom: -100px;
-            background: rgba(255, 255, 255, 0.6);
-            border-radius: 50%;
-            animation: rise 12s infinite ease-in;
-            opacity: 0.8;
-        }
+    footer {
+      background: #01405a;
+      color: #a8dfff;
+      text-align: center;
+      padding: 22px 12px;
+      margin-top: 40px;
+      font-weight: 500;
+      font-size: 0.9rem;
+      user-select: none;
+      box-shadow: inset 0 3px 8px #0a8fdc99;
+    }
 
-        /* Blue bubbles */
-        .bubble.blue {
-            background: rgba(150, 200, 255, 0.7);
-        }
+    /* ---------------- BUBBLE ANIMATION ---------------- */
 
-        @keyframes rise {
-            0% { transform: translateY(0) scale(0.5); opacity: 0.3; }
-            50% { opacity: 0.9; }
-            100% { transform: translateY(-120vh) scale(1.2); opacity: 0; }
-        }
-    </style>
+    .bubble-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      pointer-events: none;
+      z-index: 1;
+      background: radial-gradient(circle at bottom, #01405a 20%, transparent 80%);
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -100px;
+      background: rgba(150, 215, 255, 0.7);
+      border-radius: 50%;
+      animation: rise 15s infinite ease-in;
+      opacity: 0.75;
+      filter: drop-shadow(0 0 2px #62aaff);
+    }
+
+    /* Larger and smaller bubbles */
+    .bubble.large {
+      width: 40px;
+      height: 40px;
+      animation-duration: 18s;
+      opacity: 0.5;
+    }
+    .bubble.medium {
+      width: 25px;
+      height: 25px;
+      animation-duration: 13s;
+      opacity: 0.7;
+    }
+    .bubble.small {
+      width: 15px;
+      height: 15px;
+      animation-duration: 10s;
+      opacity: 0.85;
+    }
+
+    /* Blue bubble shade override */
+    .bubble.blue {
+      background: rgba(90, 180, 255, 0.75);
+      filter: drop-shadow(0 0 4px #3c9fff);
+    }
+
+    @keyframes rise {
+      0% {
+        transform: translateY(0) scale(0.5);
+        opacity: 0.3;
+      }
+      50% {
+        opacity: 0.9;
+      }
+      100% {
+        transform: translateY(-130vh) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 720px) {
+      .menu-section {
+        width: 95%;
+        padding: 20px;
+      }
+      nav a {
+        margin: 0 12px;
+        font-size: 16px;
+      }
+      header h1 {
+        font-size: 1.6rem;
+      }
+      header img.logo {
+        width: 48px;
+        height: 48px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<!-- ANIMATED BUBBLES -->
+<!-- Animated Bubbles -->
 <div class="bubble-container">
-    <!-- Randomized bubbles (you can add more if you want!) -->
-    <div class="bubble blue" style="left: 10%; width: 25px; height: 25px; animation-delay: 0s;"></div>
-    <div class="bubble" style="left: 25%; width: 15px; height: 15px; animation-delay: 2s;"></div>
-    <div class="bubble blue" style="left: 40%; width: 35px; height: 35px; animation-delay: 1s;"></div>
-    <div class="bubble" style="left: 55%; width: 20px; height: 20px; animation-delay: 3s;"></div>
-    <div class="bubble blue" style="left: 70%; width: 30px; height: 30px; animation-delay: 1.5s;"></div>
-    <div class="bubble" style="left: 85%; width: 18px; height: 18px; animation-delay: 4s;"></div>
-    <div class="bubble blue" style="left: 15%; width: 40px; height: 40px; animation-delay: 5s;"></div>
-    <div class="bubble" style="left: 60%; width: 22px; height: 22px; animation-delay: 6s;"></div>
+  <div class="bubble blue small" style="left: 10%; animation-delay: 0s;"></div>
+  <div class="bubble medium" style="left: 25%; animation-delay: 2s;"></div>
+  <div class="bubble blue large" style="left: 40%; animation-delay: 1s;"></div>
+  <div class="bubble small" style="left: 55%; animation-delay: 3s;"></div>
+  <div class="bubble blue medium" style="left: 70%; animation-delay: 1.5s;"></div>
+  <div class="bubble small" style="left: 85%; animation-delay: 4s;"></div>
+  <div class="bubble blue large" style="left: 15%; animation-delay: 5s;"></div>
+  <div class="bubble medium" style="left: 60%; animation-delay: 6s;"></div>
 </div>
 
 <header>
-    <h1>🌊 Bubbles & Bakes Café</h1>
-    <p>Your cozy sea-themed hideaway for coffee, treats, and ocean vibes</p>
+  <img src="hi.jpg" alt="Bubbles & Bakes Logo" class="logo" />
+  <h1>Bubbles & Bakes Café</h1>
 </header>
 
 <nav>
-    <a href="#drinks">Drinks</a>
-    <a href="#treats">Sweet Treats</a>
-    <a href="#icecream">Ice Cream</a>
+  <a href="#drinks">Drinks</a>
+  <a href="#treats">Sweet Treats</a>
+  <a href="#icecream">Ice Cream</a>
 </nav>
 
-<!-- Drinks Section -->
 <section id="drinks" class="section">
-    <h2>🥤 Drinks</h2>
-
-    <div class="menu-section">
-        <div class="dish"><h3>Hot Chocolate — £3</h3></div>
-        <div class="dish"><h3>Coral Coffee — £2.50</h3></div>
-        <div class="dish"><h3>Orange Juice — £1.50</h3></div>
-        <div class="dish"><h3>Apple Juice — £1.50</h3></div>
+  <div class="wave-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M0,30 C240,70 360,0 720,30 C1080,60 1200,10 1440,30 L1440,70 L0,70 Z"
+        fill="#01405a"
+      />
+    </svg>
+  </div>
+  <div class="menu-section" role="region" aria-labelledby="drinks-title">
+    <h2 id="drinks-title">🥤 Drinks</h2>
+    <div class="menu-item">
+      <div class="name">Hot Chocolate</div>
+      <div class="price">£3.00</div>
     </div>
+    <div class="menu-item">
+      <div class="name">Coral Coffee</div>
+      <div class="price">£2.50</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Orange Juice</div>
+      <div class="price">£1.50</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Apple Juice</div>
+      <div class="price">£1.50</div>
+    </div>
+  </div>
 
-    <img src="/mnt/data/IMG_1569.jpg" class="menu-image" alt="Drinks & Treats Menu">
+  <img
+    src="/mnt/data/IMG_1569.jpg"
+    alt="Drinks and Sweet Treats Menu"
+    class="menu-image"
+    loading="lazy"
+  />
 </section>
 
-<!-- Sweet Treats Section -->
 <section id="treats" class="section">
-    <h2>🧁 Sweet Treats</h2>
-
-    <div class="menu-section">
-        <div class="dish"><h3>Mermaid Moose — £3.50</h3></div>
-        <div class="dish"><h3>Cake Pop — £2.50</h3></div>
-        <div class="dish"><h3>Cinnamon Sea Swirl — £3.55</h3></div>
-        <div class="dish"><h3>Pancake 🥞 — £5.50</h3></div>
-        <div class="dish"><h3>Tidal Treats — £3.50</h3></div>
-        <div class="dish"><h3>Cupcake — £3.50</h3></div>
-        <div class="dish"><h3>Starfish Sugar Shortcake — £4</h3></div>
+  <div class="wave-divider" aria-hidden="true" style="transform: rotate(180deg);">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M0,30 C240,70 360,0 720,30 C1080,60 1200,10 1440,30 L1440,70 L0,70 Z"
+        fill="#01405a"
+      />
+    </svg>
+  </div>
+  <div class="menu-section" role="region" aria-labelledby="treats-title">
+    <h2 id="treats-title">🧁 Sweet Treats</h2>
+    <div class="menu-item">
+      <div class="name">Mermaid Moose</div>
+      <div class="price">£3.50</div>
     </div>
+    <div class="menu-item">
+      <div class="name">Cake Pop</div>
+      <div class="price">£2.50</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Cinnamon Sea Swirl</div>
+      <div class="price">£3.55</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Pancake 🥞</div>
+      <div class="price">£5.50</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Tidal Treats</div>
+      <div class="price">£3.50</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Cupcake</div>
+      <div class="price">£3.50</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Starfish Sugar Shortcake</div>
+      <div class="price">£4.00</div>
+    </div>
+  </div>
 </section>
 
-<!-- Ice Cream Section -->
 <section id="icecream" class="section">
-    <h2>🍦 Ice Cream Menu</h2>
-
-    <div class="menu-section">
-        <div class="dish"><h3>Chocolate Ice Cream</h3></div>
-        <div class="dish"><h3>Vanilla Ice Cream</h3></div>
-        <div class="dish"><h3>Butterscotch Ice Cream</h3></div>
-        <div class="dish"><h3>Mint Chocolate</h3></div>
-        <div class="dish"><h3>Strawberry Ice Cream</h3></div>
-        <div class="dish"><h3>Peach Ice Cream</h3></div>
-        <div class="dish"><h3>Mocha Ice Cream</h3></div>
-        <div class="dish"><h3>Oreo Cookie Ice Cream</h3></div>
-
-        <h3><strong>Sizes & Prices:</strong></h3>
-        <p>Small — £3.50</p>
-        <p>Medium — £4.00</p>
-        <p>Large — £4.50</p>
+  <div class="wave-divider" aria-hidden="true">
+    <svg viewBox="0 0 1440 70" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <path
+        d="M0,30 C240,70 360,0 720,30 C1080,60 1200,10 1440,30 L1440,70 L0,70 Z"
+        fill="#01405a"
+      />
+    </svg>
+  </div>
+  <div class="menu-section" role="region" aria-labelledby="icecream-title">
+    <h2 id="icecream-title">🍦 Ice Cream Menu</h2>
+    <div class="menu-item">
+      <div class="name">Chocolate Ice Cream</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Vanilla Ice Cream</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Butterscotch Ice Cream</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Mint Chocolate</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Strawberry Ice Cream</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Peach Ice Cream</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Mocha Ice Cream</div>
+    </div>
+    <div class="menu-item">
+      <div class="name">Oreo Cookie Ice Cream</div>
     </div>
 
-    <img src="/mnt/data/IMG_1565.jpg" class="menu-image" alt="Ice Cream Menu">
+    <h3 style="margin-top: 25px; text-align: center; color: #82c1ff;">
+      Sizes & Prices:
+    </h3>
+    <div class="menu-item" style="justify-content: center; gap: 20px; font-weight: 700;">
+      <div class="name">Small</div>
+      <div class="price">£3.50</div>
+      <div class="name">Medium</div>
+      <div class="price">£4.00</div>
+      <div class="name">Large</div>
+      <div class="price">£4.50</div>
+    </div>
+  </div>
+
+  <img src="/mnt/data/IMG_1565.jpg" alt="Ice Cream Menu" class="menu-image" loading="lazy" />
 </section>
 
 <footer>
-    © 2025 Bubbles & Bakes Café • Made with ❤️ & Ocean Magic
+  © 2025 Bubbles & Bakes Café • Made with ❤️ & Ocean Magic
 </footer>
 
 </body>
