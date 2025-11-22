@@ -29,6 +29,25 @@
             pointer-events: none;
         }
 
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) translateX(0);
+                opacity: 0.3;
+            }
+            25% {
+                transform: translateY(-100px) translateX(50px);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateY(-200px) translateX(-30px);
+                opacity: 0.4;
+            }
+            75% {
+                transform: translateY(-150px) translateX(70px);
+                opacity: 0.5;
+            }
+        }
+
         header {
             text-align: center;
             padding: 60px 20px 40px;
@@ -59,226 +78,267 @@
             letter-spacing: 2px;
         }
 
+        .slogan {
+            font-size: 1.4em;
+            font-style: italic;
+            color: #aed6f1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 20px;
-            z-index: 10;
             position: relative;
+            z-index: 10;
         }
 
         .menu-section {
             background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 40px;
             margin-bottom: 40px;
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.2);
             color: #0891b2;
         }
 
         .menu-section h2 {
-            font-size: 2.2em;
-            margin-bottom: 25px;
+            font-size: 2em;
+            margin-bottom: 30px;
             text-align: center;
+            color: #0891b2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+            font-family: 'Georgia', serif;
             font-weight: bold;
+            font-style: italic;
         }
 
-        /* NEW STYLES FOR IMAGES */
         .menu-item {
             display: flex;
-            align-items: center;
             justify-content: space-between;
+            align-items: center;
             padding: 15px 0;
             border-bottom: 1px solid rgba(8, 145, 178, 0.3);
+            font-size: 1.1em;
+            font-family: 'Georgia', serif;
+            font-style: italic;
         }
 
         .menu-item:last-child {
             border-bottom: none;
         }
 
-        .item-details {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            width: 70%;
-        }
-
-        .item-img {
-            width: 60px;
-            height: 60px;
-            border-radius: 12px;
-            object-fit: cover;
-            border: 2px solid #0891b2;
-        }
-
         .item-name {
-            font-size: 1.2em;
-            font-weight: bold;
+            font-weight: 500;
         }
 
         .item-price {
-            font-size: 1.2em;
             font-weight: bold;
             color: #0891b2;
+            font-size: 1em;
         }
 
+        .ice-cream-flavors {
+            margin-bottom: 30px;
+        }
+
+        .ice-cream-flavors ul {
+            list-style: none;
+            text-align: center;
+            line-height: 2;
+            font-size: 1.1em;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        .size-table {
+            width: 100%;
+            margin-top: 20px;
+            border-collapse: collapse;
+        }
+
+        .size-table th,
+        .size-table td {
+            padding: 15px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            font-size: 1.1em;
+            font-family: 'Georgia', serif;
+            font-style: italic;
+        }
+
+        .size-table th {
+            background: rgba(255, 255, 255, 0.2);
+            font-size: 1.1em;
+        }
+
+        footer {
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .mission {
+            font-size: 1.6em;
+            font-weight: bold;
+            color: #aed6f1;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            line-height: 1.6;
+        }
+
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2em;
+            }
+
+            .menu-section {
+                padding: 25px;
+            }
+
+            .menu-section h2 {
+                font-size: 2em;
+            }
+
+            .menu-item {
+                font-size: 1em;
+            }
+        }
     </style>
 </head>
 <body>
+    <div id="bubbles-container"></div>
 
     <header>
         <div class="logo">
             <img src="hi.jpg" alt="Bubbles & Bakes Logo">
         </div>
         <h1>BUBBLES & BAKES</h1>
+        <p class="slogan">A splash of sweetness in every bite</p>
     </header>
 
     <div class="container">
-
-        <!-- DRINKS -->
         <div class="menu-section">
             <h2>🥤 Drinks</h2>
-
             <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Hot Chocolate</span>
-                </div>
+                <span class="item-name">Hot chocolate</span>
                 <span class="item-price">£3.00</span>
             </div>
-
             <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Coral Coffee</span>
-                </div>
+                <span class="item-name">Coral coffee</span>
                 <span class="item-price">£2.50</span>
             </div>
-
             <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Orange Juice</span>
-                </div>
+                <span class="item-name">Orange juice</span>
                 <span class="item-price">£1.50</span>
             </div>
-
             <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Apple Juice</span>
-                </div>
+                <span class="item-name">Apple juice</span>
                 <span class="item-price">£1.50</span>
             </div>
         </div>
 
-        <!-- SWEET TREATS -->
         <div class="menu-section">
             <h2>🧁 Sweet Treats</h2>
-
             <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Mermaid Mousse</span>
-                </div>
+                <span class="item-name">Mermaid moose</span>
                 <span class="item-price">£3.50</span>
             </div>
-
             <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Cake Pop</span>
-                </div>
+                <span class="item-name">Cake pop</span>
                 <span class="item-price">£2.50</span>
             </div>
-
             <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Cinnamon Sea Swirl</span>
-                </div>
+                <span class="item-name">Cinnamon sea swirl</span>
                 <span class="item-price">£3.55</span>
             </div>
-
             <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Pancake 🥞</span>
-                </div>
+                <span class="item-name">Pancake 🥞</span>
                 <span class="item-price">£5.50</span>
             </div>
-
             <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Tidal Treats Cupcake</span>
-                </div>
+                <span class="item-name">Tidal treats cupcake</span>
                 <span class="item-price">£3.50</span>
             </div>
-
             <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Starfish Sugar Shortcake 🍰</span>
-                </div>
+                <span class="item-name">Starfish sugar shortcake 🍰</span>
                 <span class="item-price">£4.00</span>
             </div>
         </div>
 
-        <!-- ICE CREAM -->
         <div class="menu-section">
             <h2>🍦 Ice Cream Menu</h2>
 
-            <!-- Repeat structure for each ice cream -->
-            <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Chocolate Ice Cream (Small)</span>
-                </div>
-                <span class="item-price">£3.50</span>
+            <p style="text-align:center; font-size:1.2em; font-family:'Georgia', serif; font-style:italic; margin-bottom:20px; color:#057a96;">
+                Choose your favourite flavour & size
+            </p>
+
+            <!-- Ice Cream Flavors in Two Columns -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 30px; font-family:'Georgia', serif; font-style:italic;">
+                <div class="menu-item" style="border-bottom:none; justify-content:center;">Chocolate Ice Cream</div>
+                <div class="menu-item" style="border-bottom:none; justify-content:center;">Vanilla Ice Cream</div>
+                <div class="menu-item" style="border-bottom:none; justify-content:center;">Butterscotch Ice Cream</div>
+                <div class="menu-item" style="border-bottom:none; justify-content:center;">Mint Chocolate</div>
+                <div class="menu-item" style="border-bottom:none; justify-content:center;">Strawberry Ice Cream</div>
+                <div class="menu-item" style="border-bottom:none; justify-content:center;">Peach Ice Cream</div>
+                <div class="menu-item" style="border-bottom:none; justify-content:center;">Mocha Ice Cream</div>
+                <div class="menu-item" style="border-bottom:none; justify-content:center;">Oreo Cookies</div>
             </div>
 
-            <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Vanilla Ice Cream (Small)</span>
-                </div>
-                <span class="item-price">£3.50</span>
-            </div>
+            <hr style="border:0; border-top:2px solid rgba(8,145,178,0.3); margin: 20px 0;">
 
-            <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Mint Chocolate (Small)</span>
-                </div>
-                <span class="item-price">£3.50</span>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Oreo Cookies Ice Cream (Small)</span>
-                </div>
-                <span class="item-price">£3.50</span>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Medium Size (any flavor)</span>
-                </div>
-                <span class="item-price">£4.00</span>
-            </div>
-
-            <div class="menu-item">
-                <div class="item-details">
-                    <img src="YOUR-IMAGE.jpg" class="item-img">
-                    <span class="item-name">Large Size (any flavor)</span>
-                </div>
-                <span class="item-price">£4.50</span>
-            </div>
-
+            <!-- Size Table -->
+            <table class="size-table">
+                <tr>
+                    <th>Size</th>
+                    <th>Price</th>
+                </tr>
+                <tr>
+                    <td>Small</td>
+                    <td>£3.50</td>
+                </tr>
+                <tr>
+                    <td>Medium</td>
+                    <td>£4.00</td>
+                </tr>
+                <tr>
+                    <td>Large</td>
+                    <td>£4.50</td>
+                </tr>
+            </table>
         </div>
     </div>
+
+    <footer>
+        <p class="mission">Sip, Snack, Smile<br>Do some good, share clean water, fresh food</p>
+    </footer>
+
+    <script>
+        function createBubbles() {
+            const container = document.getElementById('bubbles-container');
+            const bubbleCount = 30;
+
+            for (let i = 0; i < bubbleCount; i++) {
+                const bubble = document.createElement('div');
+                bubble.className = 'bubble';
+
+                const size = Math.random() * 60 + 20;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.top = Math.random() * 100 + '%';
+
+                bubble.style.animationDelay = Math.random() * 5 + 's';
+                bubble.style.animationDuration = (Math.random() * 10 + 10) + 's';
+
+                container.appendChild(bubble);
+            }
+        }
+
+        createBubbles();
+    </script>
 </body>
 </html>
